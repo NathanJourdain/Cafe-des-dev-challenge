@@ -1,0 +1,304 @@
+:root{
+    --color-burgundy: #662f32;
+    --color-maroon: #645955;
+    --color-light-maroon: #6c655d;
+    --color-black : #000000;
+    --color-white: #FFFFFF;
+
+    --color-burgundy-hover: rgba(102, 47, 50, 0.5);
+
+}
+
+*, ::before, ::after {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    color: var(--color-black);
+    background-color: var(--color-light-maroon);
+}
+body > *{
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    background-color: var(--color-white);
+}
+
+
+
+
+/* ------------------ */
+/*     NAVIGATION     */
+/* ------------------ */
+header .mobile-hamburger{
+    display: block;
+    background-color: transparent;
+    border: none;
+    width: 50px;
+    margin: auto;
+    height: 50px;
+    cursor: pointer;
+    position: relative;
+    
+    /* caché de base */
+    display: none;
+}
+header .mobile-hamburger span{
+    display: block;
+    width: 50px;
+    border-bottom: 3px solid var(--color-black);
+    position: absolute;
+    transition: transform 0.2s;
+}
+header .mobile-hamburger:not(.active) span:nth-of-type(1){
+    top: 10px;
+}
+header .mobile-hamburger:not(.active) span:nth-of-type(2){
+    bottom: 10px;
+}
+header .mobile-hamburger.active span:nth-of-type(1){
+    transform: rotate(45deg);
+}
+header .mobile-hamburger.active span:nth-of-type(2){
+    transform: scaleX(0);
+}
+header .mobile-hamburger.active span:nth-of-type(3){
+    transform: rotate(-45deg);
+}
+
+
+header nav ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+header nav li{
+    list-style: none;
+    font-size: clamp(10px, 3vw ,25px);
+    text-transform: uppercase;
+    
+}
+header nav li.active{
+    background-color: var(--color-burgundy);
+    color: #FFFFFF;
+}
+header nav li:hover:not(.active){
+    background-color: var(--color-burgundy-hover);
+}
+header nav a{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: currentColor;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+    header .mobile-hamburger{
+        display: block;
+    }
+    header nav{
+        display: none;
+    }
+    header .mobile-hamburger.active + nav{
+        display: block;
+    }
+    header nav ul{
+        flex-direction: column;
+    }
+    header nav a{
+        width: 100vw;
+    }
+}
+
+
+/* ------------------ */
+/*    HERO SECTION    */
+/* ------------------ */
+.hero h1{
+    font-size: clamp(30px, 10vw, 100px);
+    text-align: center;
+    padding: 100px 0 100px 0;
+}
+.hero h1 span{
+    color: var(--color-burgundy);
+}
+
+.hero .slider{
+    width: 100%;
+    aspect-ratio: 2 / 1;
+
+    display: grid;
+    grid-template-columns: repeat(3, 100%);
+    overflow-x: hidden;
+
+    position: relative;
+
+}
+.hero .slider img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+.hero .slider button{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 50%;
+
+    top: 50%;
+    transform: translateY(-50%);
+    
+    background-color: rgba(255, 255, 255, 1);
+    
+    border: none;
+    cursor: pointer;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.hero .slider:hover button{
+    visibility: visible;
+    opacity: 1;
+}
+.hero .slider .prev-btn{
+    left: 10px;
+}
+.hero .slider .next-btn{
+    right: 10px;
+}
+.hero .slider .next-btn img{
+    transform: rotate(180deg);
+}
+
+
+/* ------------------ */
+/*        MAIN        */
+/*         +          */
+/*  Presentations box */
+/* ------------------ */
+main{
+    padding: 20px;
+}
+
+.presentations{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: minmax(450px, auto);
+    grid-gap: 30px;
+}
+
+@media screen and (max-width: 700px) {
+    .presentations{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3,minmax(450px, auto));
+    }
+}
+
+.presentations .card{
+    background-color: var(--color-maroon);
+    position: relative;
+}
+.presentations .card h2{
+    background-color: var(--color-burgundy);
+    color: var(--color-white);
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    padding: 10px 0;
+}
+.presentations .card > img{
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+}
+.presentations .card p{
+    padding-top: 1em;
+    color: var(--color-white);
+    font-size: 18px;
+}
+.presentations .card a{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    background-image: url('assets/img/plus_btn.png');
+
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+}
+.presentations .card a:hover{
+    background-image: url('assets/img/plus_btn_h.png');
+}
+.tesimonials h2,
+.premium h2,
+.about h2{
+    margin-bottom: 30px;
+    font-weight: lighter;
+}
+.tesimonials ul{
+    list-style: url("./assets/img/arrow.png");
+    margin-left: 20px;
+}
+.tesimonials ul li{
+    margin-bottom: 10px;
+}
+
+.premium p,
+.about p{
+    margin-bottom: 10px;
+}
+.premium a,
+.about a{
+    padding: 10px 10px 20px 10px;
+    background-color: var(--color-maroon);
+    color: var(--color-white);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 5px;
+}
+.presentations .bold{
+    color: var(--color-burgundy);
+    font-weight: bold;
+}
+
+
+
+/* ------------------ */
+/*      FOOTER        */
+/* ------------------ */
+footer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 10px 50px 10px 20px;
+    border-top: 1px solid var(--color-black);
+}
+
+footer ul{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+footer ul li a{
+    background-image: url('assets/img/reseaux.png');
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+footer ul li a:hover{background-position-y: 32px;}
+
+footer .facebook a{background-position-x: 0px;}
+footer .tumblr a{background-position-x: 64px;}
+footer .googleplus a{background-position-x: 32px;}
