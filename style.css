@@ -266,7 +266,18 @@ main{
     text-decoration: none;
     display: inline-block;
     margin-top: 5px;
+    position: relative;
 }
+.premium a:hover,
+.about a:hover{
+    animation: tremor-anim 0.3s linear;
+    background-color: var(--color-burgundy);
+}
+@keyframes tremor-anim {
+    25%, 75%{transform: rotateZ(5deg);}
+    50%, 100%{transform: rotateZ(-5deg);}
+}
+
 .presentations .bold{
     color: var(--color-burgundy);
     font-weight: bold;
